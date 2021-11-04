@@ -1,34 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Registry</title>
-  <link rel="stylesheet" href="/css/jass.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NFTRACKER</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="script" href="/script.js">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/f6dcf461c1.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
-  <header class="display-flex justify-space-between align-center p-2">
-    <h1>
-      User Registry
-    </h1>
-    {{#if logged_in}}
-    <nav>
-      <button class="btn" id="logout">logout</button>
-    </nav>
-    {{/if}}
-  </header>
+    <header>
+        <div class="logo"><a href="index.html">NFT Tracker</a></div>
+        <nav>
+            <ul class="nav_links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Favorites</a></li>
+                <li><a href="#">Explore</a></li>
+            </ul>
+        </nav>
+        <div class="login-signup">
+            <a class="login" href="#"><button>Login</button></a>
+            <a class="signup" href="#"><button>Sign Up</button></a>
+        </div>
+    </header>
+    <marquee  scrollamount="0" direction="left">
+        <ul class="btc-content">
+            <li>BTC</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+        <ul class="eth-content">
+            <li>ETH</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+        <ul class="eth-content">
+            <li>ETH</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+        <ul class="eth-content">
+            <li>ETH</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+        <ul class="eth-content">
+            <li>ETH</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+        <ul class="eth-content">
+            <li>ETH</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+        <ul class="eth-content">
+            <li>ETH</li>
+            <li>PRICE</li>
+            <li>% CHANGE</li>
+        </ul>
+    </marquee>
   <main class="container container-fluid mt-5">
     {{{ body }}}
   </main>
-  <footer>
-      
-  </footer>
-
-  {{#if logged_in}}
-  <script src="/js/logout.js"></script>
-  {{/if}}
+  
 </body>
 
 </html>

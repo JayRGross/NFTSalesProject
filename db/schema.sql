@@ -1,4 +1,3 @@
 DROP DATABASE IF EXISTS nft_db;
 CREATE DATABASE nft_db;
 
-USE nft_db
