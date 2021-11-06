@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,6 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://kit.fontawesome.com/f6dcf461c1.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
     <header>
         <div class="logo"><a href="index.html">NFT Tracker</a></div>
@@ -25,62 +27,25 @@
             <a class="signup" href="#"><button>Sign Up</button></a>
         </div>
     </header>
-    <marquee  scrollamount="0" direction="left">
-        <ul class="btc-content">
-            <li>BTC</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-        <ul class="eth-content">
-            <li>ETH</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-        <ul class="eth-content">
-            <li>ETH</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-        <ul class="eth-content">
-            <li>ETH</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-        <ul class="eth-content">
-            <li>ETH</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-        <ul class="eth-content">
-            <li>ETH</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-        <ul class="eth-content">
-            <li>ETH</li>
-            <li>PRICE</li>
-            <li>% CHANGE</li>
-        </ul>
-    </marquee>
     <section class="tables">
         <table class="sales50" id="sales50">
             <div class="sales50title">
                 <form action="/action_page.php">
                     <label for="collections">Collection:</label>
                     <select name="collections" id="collections">
-                      <option id="cryptopunks" value="cryptopunks">CryptoPunks</option>
-                      <option id="boredapeyachtclub" value="boredapeyachtclub">BAYC</option>
-                      <option id="mutant-ape-yacht-club" value="mutant-ape-yacht-club">MAYC</option>
-                      <option value="doodles-official">Doodles</option>
-                      <option value="cryptoadz-by-gremplin">CrypToadz</option>
-                      <option value="opel">MAYC</option>
-                      <option value="opel">MAYC</option>
-                      <option value="opel">MAYC</option>
-                      <option value="opel">MAYC</option>
-                      <option value="audi"></option>
+                        <option id="cryptopunks" value="cryptopunks">CryptoPunks</option>
+                        <option id="boredapeyachtclub" value="boredapeyachtclub">BAYC</option>
+                        <option id="mutant-ape-yacht-club" value="mutant-ape-yacht-club">MAYC</option>
+                        <option id="doodles-official" value="doodles-official">Doodles</option>
+                        <option id="cryptoadz-by-gremplin" value="cryptoadz-by-gremplin">CrypToadz</option>
+                        <option id="cyberkongz" value="cyberkongz">CyberKongz</option>
+                        <option id="kaiju-kingz" value="kaiju-kingz">Kaiju Kingz</option>
+                        <option id="cool-cats-nft" value="cool-cats-nft">Cool Cats</option>
+                        <option id="mekaverse" value="mekaverse">MekaVerse</option>
+                        <option id="billionaireclubnft" value="billionaireclubnft">Billionaire Cub</option>
                     </select>
                     <br><br>
-                  </form>  
+                </form>
             </div>
             <thead>
                 <tr>
@@ -88,57 +53,70 @@
                     <th class="token_id">Token ID</th>
                     <th class="price_eth">Price(ETH)</th>
                     <th class="price_usd">Price(USD)</th>
-                     <th class="time">Time</th>
+                    <th class="time">Time</th>
                 </tr>
             </thead>
             <tbody id="recentsales"></tbody>
         </table>
         <script>
-            const options = {method: 'GET'};
-
-            fetch('https://api.opensea.io/api/v1/assets?order_by=sale_date&order_direction=desc&offset=0&limit=50&collection=' + collections.value, options)
-                .then(response => response.json())
-                .then(response => {
-                    resetBoard(response.assets)
-                    console.log(response.assets)
-                 }
-                )
+            function displayOpenseaResults() {
+                const options = { method: 'GET' };
+                console.log(collections);
+                const URL = 'https://api.opensea.io/api/v1/assets?order_by=sale_date&order_direction=desc&offset=0&limit=50&collection=' + collections.value
+                console.log(URL);
+                fetch(URL, options)
+                    .then(response => response.json())
+                    .then(response => {
+                        resetBoard(response.assets)
+                        console.log(response.assets)
+                    }
+                    )
                 var recentsales;
                 var timerId;
                 var updateInterval;
-                function resetBoard(assets){
+                function resetBoard(assets) {
                     var $list = $("#recentsales");
-                    $list.find(".solrecentsales").remove();
+                    $list.find(".recentsales").remove();
                     recentsales = [];
-                    for(let i = 0; i<assets.length; i++){
+                    for (let i = 0; i < assets.length; i++) {
                         recentsales.push(
                             {
-                                 token_id: assets[i].token_id,
+                                token_id: assets[i].token_id,
                                 price_eth: parseFloat(assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3),
-                                price_usd: parseFloat((assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3) * 4300).toFixed(2) ,
-                                 time: assets[i].last_sale.event_timestamp,
+                                price_usd: parseFloat((assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3) * 4300).toFixed(2),
+                                time: assets[i].last_sale.event_timestamp,
                                 icon: assets[i].image_thumbnail_url,
-                            }    
+                            }
                         )
                     }
-                    for (let i=0;i<recentsales.length;i++){
+                    for (let i = 0; i < recentsales.length; i++) {
                         var $item = $(
-                            "<tr class='recentsales'>" + 
-                                "<td class='icon'>" + "<button onclick='' id='toggle' class='likebtn'><i class='far fa-heart'></i></button>" + "<img src ='" + recentsales[i].icon + "'>" + "</td>" +
-                                "<td class='token_id'>" + recentsales[i].token_id + "</td>" +
-                                 "<td class='price_eth'>" + recentsales[i].price_eth + "</td>" +
-                                "<td class='price_usd'>" + recentsales[i].price_usd + "</td>" +
-                                "<td class='time'>" + recentsales[i].time + "</td>" +
-                            "</tr>"        
-                         );
+                            "<tr class='recentsales'>" +
+                            "<td class='icon'>" + "<button onclick='' id='toggle' class='likebtn'><i class='far fa-heart'></i></button>" + "<img src ='" + recentsales[i].icon + "'>" + "</td>" +
+                            "<td class='token_id'>" + recentsales[i].token_id + "</td>" +
+                            "<td class='price_eth'>" + recentsales[i].price_eth + "</td>" +
+                            "<td class='price_usd'>" + recentsales[i].price_usd + "</td>" +
+                            "<td class='time'>" + recentsales[i].time + "</td>" +
+                            "</tr>"
+                        );
                         recentsales[1].$item = $item;
                         $list.append($item);
                     }
-                }  
+                }
+            }
+            displayOpenseaResults();
+
+            const collectionSelectElement = document.getElementById('collections')
+
+            collectionSelectElement.addEventListener('change', (event) => {
+                displayOpenseaResults();
+            });
+
+            console.log(collectionSelectElement)
         </script>
         <table class="trending-proj">
             <thead>
-                 <tr>
+                <tr>
                     <th class="icon">Icon</th>
                     <th class="token_id">Token ID</th>
                     <th class="price_eth">Price(ETH)</th>
@@ -149,4 +127,5 @@
         </table>
     </section>
 </body>
+
 </html>
