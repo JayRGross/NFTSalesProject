@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { User } = require('../models');
+const { User, Favorite } = require('../models');
 const withAuth = require('../utils/auth');
 
 router.get('/', withAuth, async (req, res) => {
@@ -29,4 +29,25 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get("/favorites",async(req, res) =>{
+
+const user = await User.findByPk(req.session.user_id,{
+  include: [{ model: Favorite }, ],
+})
+
+const serializedUser = user.get({plain:true})
+res.render("favorites",{user:serializedUser})
+
+
+
+// console.log (serializedUser)
+
+
+})
+
+
+
+
 module.exports = router;
+
+
