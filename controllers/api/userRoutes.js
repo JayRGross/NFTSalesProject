@@ -1,7 +1,15 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
-router.post('/', async (req, res) => {
+router.get("/", async(req, res) => {
+    const userFavorites = await Favorite.findAll(User)
+    console.log (userFavorites)
+    res.json(userFavorites)
+  })
+
+
+
+router.post('/login', async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });
 

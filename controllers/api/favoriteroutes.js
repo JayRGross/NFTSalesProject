@@ -11,7 +11,45 @@ router.get("/",async(req,res)=>{
 
 })
 
+// router.get("/", async(req, res) => {
+//   const userFavorites = await Favorite.findAll(User)
+//   console.log (userFavorites)
+//   res.json(userFavorites)
+// })
 // find routes that find fav's by a users ID
-// also need a route that can create a fav and a route that delete a fav
+
+router.post('/', (req, res) => {
+  Favorite.create(req.body)
+    .then((newFavorite) => {
+      res.json(newFavorite);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+})
+
+
+// also need a route that can create a fav and a 
+
+// route that delete a fav
+
+
+router.delete('/:favorite_id', (req, res) => {
+  
+  Favorite.destroy({
+    where: {
+      id: req.params.favorite_id,
+    },
+  })
+    .then((deletedFavorite) => {
+      res.json(deletedFavorite);
+    })
+    .catch((err) => res.json(err));
+});
+
+
+
+// test all with insomnia
+
 
 module.exports = router;
