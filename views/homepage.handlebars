@@ -1,10 +1,97 @@
-{{#each users as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{{get_emoji}}} {{user.name}}</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
-</div>
-{{/each}}
+ <section class="tables">
+        <table class="sales50" id="sales50">
+            <div class="sales50title">
+                <form action="/action_page.php">
+                    <label for="collections">Collection:</label>
+                    <select name="collections" id="collections">
+                      <option id="cryptopunks" value="cryptopunks">CryptoPunks</option>
+                      <option id="boredapeyachtclub" value="boredapeyachtclub">BAYC</option>
+                      <option id="mutant-ape-yacht-club" value="mutant-ape-yacht-club">MAYC</option>
+                      <option value="doodles-official">Doodles</option>
+                      <option value="cryptoadz-by-gremplin">CrypToadz</option>
+                      <option value="opel">MAYC</option>
+                      <option value="opel">MAYC</option>
+                      <option value="opel">MAYC</option>
+                      <option value="opel">MAYC</option>
+                      <option value="audi"></option>
+                    </select>
+                    <br><br>
+                  </form>  
+            </div>
+            <thead>
+                <tr>
+                    <th class="icon">Icon</th>
+                    <th class="token_id">Token ID</th>
+                    <th class="price_eth">Price(ETH)</th>
+                    <th class="price_usd">Price(USD)</th>
+                     <th class="time">Time</th>
+                </tr>
+            </thead>
+            <tbody id="recentsales"></tbody>
+        </table>
+
+
+
+        <script>
+          $(document).ready(function(){
+            const options = {method: 'GET'};
+
+            fetch('https://api.opensea.io/api/v1/assets?order_by=sale_date&order_direction=desc&offset=0&limit=50&collection=' + collections.value, options)
+                .then(response => response.json())
+                .then(response => {
+                    resetBoard(response.assets)
+                    console.log(response.assets)
+                 }
+                )
+                var recentsales;
+                var timerId;
+                var updateInterval;
+                function resetBoard(assets){
+                    var $list = $("#recentsales");
+                    $list.find(".solrecentsales").remove();
+                    recentsales = [];
+                    for(let i = 0; i<assets.length; i++){
+                        recentsales.push(
+                            {
+                                 token_id: assets[i].token_id,
+                                price_eth: parseFloat(assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3),
+                                price_usd: parseFloat((assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3) * 4300).toFixed(2) ,
+                                 time: assets[i].last_sale.event_timestamp,
+                                icon: assets[i].image_thumbnail_url,
+                            }    
+                        )
+                    }
+                    for (let i=0;i<recentsales.length;i++){
+                        var $item = $(
+                            "<tr class='recentsales'>" + 
+                                "<td class='icon'>" + "<button onclick='' id='toggle' class='likebtn'><i class='far fa-heart'></i></button>" + "<img src ='" + recentsales[i].icon + "'>" + "</td>" +
+                                "<td class='token_id'>" + recentsales[i].token_id + "</td>" +
+                                 "<td class='price_eth'>" + recentsales[i].price_eth + "</td>" +
+                                "<td class='price_usd'>" + recentsales[i].price_usd + "</td>" +
+                                "<td class='time'>" + recentsales[i].time + "</td>" +
+                            "</tr>"        
+                         );
+                        recentsales[1].$item = $item;
+                        $list.append($item);
+                    }
+                } 
+
+          })
+
+
+
+
+             
+        </script>
+        <table class="trending-proj">
+            <thead>
+                 <tr>
+                    <th class="icon">Icon</th>
+                    <th class="token_id">Token ID</th>
+                    <th class="price_eth">Price(ETH)</th>
+                    <th class="price_usd">Price(USD)</th>
+                    <th class="time">Time</th>
+                </tr>
+            </thead>
+        </table>
+    </section>
