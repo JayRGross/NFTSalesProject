@@ -31,12 +31,18 @@ router.get('/login', (req, res) => {
 
 router.get("/favorites",async(req, res) =>{
 
-const user = await User.findByPk(req.session.user_id,{
-  include: [{ model: Favorite }, ],
-})
+  const user = await User.findByPk(req.session.user_id,{
+    include: [{ model: Favorite }, ],
+  })
 
-const serializedUser = user.get({plain:true})
-res.render("favorites",{user:serializedUser})
+  const serializedUser = user.get({plain:true})
+
+  for(const fav of serializedUser.Favorite){
+    console.log(fav)
+
+  }
+
+  res.render("favorites",{user:serializedUser})
 
 
 
