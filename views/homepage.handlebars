@@ -18,6 +18,7 @@
                     <br><br>
                   </form>  
             </div>
+        
             <thead>
                 <tr>
                     <th class="icon">Icon</th>
@@ -30,7 +31,7 @@
             <tbody id="recentsales"></tbody>
         </table>
 
-
+        {{logged_in}}
 
         <script>
           $(document).ready(function(){
@@ -62,6 +63,8 @@
                         )
                     }
                     for (let i=0;i<recentsales.length;i++){
+                        
+                        console.log(recentsales[i].icon);
                         var $item = $(
                             "<tr class='recentsales'>" + 
                                 "<td class='icon'>" + "<button onclick='' id='toggle' class='likebtn'><i class='far fa-heart'></i></button>" + "<img src ='" + recentsales[i].icon + "'>" + "</td>" +
