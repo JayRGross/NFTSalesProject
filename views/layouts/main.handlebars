@@ -20,16 +20,41 @@
                 <li><a href="#">Explore</a></li>
             </ul>
         </nav>
-        <div class="login-signup">
+
+
+{{#if logged_in}} 
+ <a id="logout" href="#"><button>Log out</button></a>
+
+{{else}} 
+<div class="login-signup">
             <a class="login" href="#"><button>Login</button></a>
             <a class="signup" href="#"><button>Sign Up</button></a>
+            
         </div>
+
+{{/if}}
+
+
+        
     </header>
     
   <main class="container container-fluid mt-5">
     {{{ body }}}
+    
   </main>
-  
+  <script> 
+      const logout = document.getElementById("logout")
+      logout.addEventListener ('click', () => {
+          fetch("/api/users/logout", { 
+              method:'POST' 
+
+          })
+          .then (() => window.location.reload ()) 
+
+      })
+
+
+  </script>
 </body>
 
 </html>
