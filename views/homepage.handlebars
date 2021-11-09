@@ -9,11 +9,11 @@
                       <option id="mutant-ape-yacht-club" value="mutant-ape-yacht-club">MAYC</option>
                       <option value="doodles-official">Doodles</option>
                       <option value="cryptoadz-by-gremplin">CrypToadz</option>
-                      <option value="opel">MAYC</option>
-                      <option value="opel">MAYC</option>
-                      <option value="opel">MAYC</option>
-                      <option value="opel">MAYC</option>
-                      <option value="audi"></option>
+                      <option value="bearxlabs">BearXLabs</option>
+                      <option value="divineanarchy">Divine Anarchy</option>
+                      <option value="cool-cats-nft">Cool Cats</option>
+                      <option value="kaiju-kingz">Kaiju Kingz</option>
+                      <option value="twoplustwogenesis">2 + 2 Genesis</option>
                     </select>
                     <br><br>
                   </form>  
@@ -29,60 +29,8 @@
             </thead>
             <tbody id="recentsales"></tbody>
         </table>
-
-
-
-        <script>
-          $(document).ready(function(){
-            const options = {method: 'GET'};
-
-            fetch('https://api.opensea.io/api/v1/assets?order_by=sale_date&order_direction=desc&offset=0&limit=50&collection=' + collections.value, options)
-                .then(response => response.json())
-                .then(response => {
-                    resetBoard(response.assets)
-                    console.log(response.assets)
-                 }
-                )
-                var recentsales;
-                var timerId;
-                var updateInterval;
-                function resetBoard(assets){
-                    var $list = $("#recentsales");
-                    $list.find(".solrecentsales").remove();
-                    recentsales = [];
-                    for(let i = 0; i<assets.length; i++){
-                        recentsales.push(
-                            {
-                                 token_id: assets[i].token_id,
-                                price_eth: parseFloat(assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3),
-                                price_usd: parseFloat((assets[i].last_sale.total_price * 0.000000000000000001).toFixed(3) * 4300).toFixed(2) ,
-                                 time: assets[i].last_sale.event_timestamp,
-                                icon: assets[i].image_thumbnail_url,
-                            }    
-                        )
-                    }
-                    for (let i=0;i<recentsales.length;i++){
-                        var $item = $(
-                            "<tr class='recentsales'>" + 
-                                "<td class='icon'>" + "<button onclick='' id='toggle' class='likebtn'><i class='far fa-heart'></i></button>" + "<img src ='" + recentsales[i].icon + "'>" + "</td>" +
-                                "<td class='token_id'>" + recentsales[i].token_id + "</td>" +
-                                 "<td class='price_eth'>" + recentsales[i].price_eth + "</td>" +
-                                "<td class='price_usd'>" + recentsales[i].price_usd + "</td>" +
-                                "<td class='time'>" + recentsales[i].time + "</td>" +
-                            "</tr>"        
-                         );
-                        recentsales[1].$item = $item;
-                        $list.append($item);
-                    }
-                } 
-
-          })
-
-
-
-
-             
-        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="/js/recentfifty.js"></script>
         <table class="trending-proj">
             <thead>
                  <tr>
