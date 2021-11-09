@@ -19,7 +19,12 @@ router.get("/",async(req,res)=>{
 // find routes that find fav's by a users ID
 
 router.post('/', (req, res) => {
-  Favorite.create(req.body)
+    console.log(req.session, req.body);
+    const favoriteData = {
+        user_id: req.session.user_id,
+        ...req.body,
+    }
+  Favorite.create(favoriteData)
     .then((newFavorite) => {
       res.json(newFavorite);
     })
