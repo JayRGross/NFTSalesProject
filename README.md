@@ -1,6 +1,6 @@
 
-# Title
-NFT Tracker
+
+#NFT Tracker
 ![Screenshot (9)](https://user-images.githubusercontent.com/85857472/141223626-d6d8219b-f535-4410-86c3-94baa76a987a.png)
 
 ## Description
