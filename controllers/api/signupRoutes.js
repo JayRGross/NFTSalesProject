@@ -7,19 +7,7 @@ router.get("/", async(req, res) => {
     res.json(userFavorites)
   })
 
-router.post('/signups', async (req, res) => {
 
-let newUser = await User.create(req.body)
-console.log (newUser)
-
-req.session.save(() => {
-  req.session.user_id = newUser.dataValues.id;
-  req.session.logged_in = true;
-  
-  res.json({ user: newUser.dataValues, message: 'You are now logged in!' });
-});
-
-})
 
 router.post('/login', async (req, res) => {
   try {
@@ -47,8 +35,6 @@ router.post('/login', async (req, res) => {
       
       res.json({ user: userData, message: 'You are now logged in!' });
     });
-
-
 
   } catch (err) {
     res.status(400).json(err);

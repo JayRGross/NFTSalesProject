@@ -22,6 +22,18 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup');
+});
+
+
+
+
 router.get("/favorites",async(req, res) =>{
 
 const user = await User.findByPk(req.session.user_id,{
