@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const { User, Favorite } = require('../models');
 const withAuth = require('../utils/auth');
+const axios =require ('axios')
 
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -34,25 +35,29 @@ router.get('/signup', (req, res) => {
 
 
 
+
 router.get("/favorites",async(req, res) =>{
 
-// const user = await User.findByPk(req.session.user_id,{
-//   include: [{ model: Favorite }, ],
-// })
+  // const user = await User.findByPk(req.session.user_id,{
+  //   include: [{ model: Favorite }, ],
+  // })
 
-// const serializedUser = user.get({plain:true})
-const favData = await Favorite.findAll({
-  where: {
-    user_id: req.session.user_id
-  }
-})
+  // const serializedUser = user.get({plain:true})
+  const favData = await Favorite.findAll({
+    where: {
+      user_id: req.session.user_id
+    }
+  })
 
-const serializedUser = favData.map(data=> data.get({plain: true}));
-res.render("favorites",{layout:'fav', serializedUser})
+  const favorites = favData.map(data=> data.get({plain: true}));
+
+  console.log(favorites)
+
+  res.render("favorites",{layout:'fav', favorites})
 
 
 
-// console.log (serializedUser)
+  // console.log (serializedUser)
 
 
 })

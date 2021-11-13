@@ -1,11 +1,12 @@
 <div class="containerfav">
     <h1>My favorites NFT</h1>
-    {{#each serializedUser}}
+    {{#each favorites}}
         <div id={{id}} class="containerimg">
         <input type="hidden" name="favId" value={{id}}/>
         <img src={{icon}} alt={{address}}/>
         <h4 class="tokenid">{{token_id}}</h4>
-        <button class="deleteBtn">Delete</button>
+        <button class="deleteBtn" data-id= "{{id}}">Delete</button>
+
         </div>
     {{/each}}
 </div>

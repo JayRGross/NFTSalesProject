@@ -1,11 +1,30 @@
-const favId = document.querySelector('input[name="faveId"]').value;
+const favId = document.querySelector('input[name="favId"]');
 
-const deleteNft = async function () {
+console.log(favId);
+
+const deleteNft = async function (event) {
+    event.preventDefault();
+    //const favoritesId= document.addEventListener
+
     await fetch(`/api/favorites/${favId}`, {
         method: 'DELETE'
     })
 
-    document.location.reload();
+    console.log("deleteNFT")
+
+    //document.location.reload();
 }
 
-document.querySelector('.deleteBtn')
+const deletion = document.querySelectorAll('.deleteBtn')//.addEventListener('click', deleteNft )
+console.log (deletion)
+
+for (const button of deletion){
+    button.addEventListener('click', deleteNft)
+    
+}
+
+
+
+
+
+
