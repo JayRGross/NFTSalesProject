@@ -1,10 +1,11 @@
 <div>
     <h1>Favorites</h1>
     {{#each serializedUser}}
-    <div>
+    <div id={{id}}>
+        <input type="hidden" name="favId" value={{id}}/>
         <img src={{icon}} alt={{address}}/>
         <h4>{{token_id}}</h4>
+        <button class="deleteBtn">Delete</button>
     </div>
-
     {{/each}}
     </div>
