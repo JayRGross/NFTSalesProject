@@ -170,3 +170,44 @@ marquee ul{
     box-shadow: 0 0 20px rgba(0,0,0, 0.15);
   }
   
+  .containerfav{
+      width:60vw;
+      margin-left: auto;
+      margin-right: auto; 
+  }
+
+
+  .containerfav h1{
+      margin-top: 30px;
+      text-align: center;
+      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-weight: normal;
+  }
+
+
+  .containerimg{
+    width: 400px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    text-align: center;
+  }
+
+  .deleteBtn{
+    background-color:#009879;
+    background-repeat:no-repeat;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    padding: 10px;
+    font-size: 18px;
+  }
+
+  .tokenid{
+      font-size: 18px;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      padding: 10px;
+  }
