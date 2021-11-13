@@ -19,6 +19,10 @@ Favorite.init(
     user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
+    }, 
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: false,
     }
   },
   {
