@@ -51,7 +51,7 @@ function displayOpenseaResults() {
             // );
             var tr = $("<tr class='recentsales'></tr>");
                 var cellOne = $("<td class='icon'> <img src ='" + recentsales[i].icon + "'> </td>") 
-                var favroiteButton = $("<button id='toggle' class='likebtn' data-address='" + recentsales[i].address + "' data-token_id='" + recentsales[i].token_id + "'><i class='far fa-heart'></i></button>")
+                var favroiteButton = $("<button id='toggle' class='likebtn' data-address='" + recentsales[i].address + "' data-token_id='" + recentsales[i].token_id + "' data-icon='" + recentsales[i].icon + "'><i class='far fa-heart'></i></button>")
                 favroiteButton.on("click", favoriteNFT)
                 cellOne.prepend(favroiteButton)
                 var cellTwo = $("<td class='token_id'>" + recentsales[i].token_id + "</td>")
