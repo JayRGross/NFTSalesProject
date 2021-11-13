@@ -190,11 +190,14 @@ marquee ul{
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction:column;
     align-items: center;
     text-align: center;
   }
 
   .deleteBtn{
+    width:140px;
     background-color:#009879;
     background-repeat:no-repeat;
     border-radius: 10px;
