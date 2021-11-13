@@ -170,10 +170,16 @@ marquee ul{
     box-shadow: 0 0 20px rgba(0,0,0, 0.15);
   }
   
-  .container{
-      margin:auto
+  .container {
+      margin:auto;
+      background:light gray;
+      font-size: 16 px;
+      color:black;
+
 
   }
   .card{
       flex-wrap: wrap;
+      border: soild black;
+      border-radius: 5px;
   }

@@ -37,14 +37,8 @@ router.get("/favorites",async(req, res) =>{
 
   res.render("favorites",{user:serializedUser})
 
-
-
 // console.log (serializedUser)
-
-
 })
-
-
 
 
 module.exports = router;
